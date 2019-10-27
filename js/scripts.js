@@ -42,32 +42,19 @@ function onOrientationChange(e) {
 		counter++;
 
 		showMessage("end load system: giroscop");
-		// document.location.href += "black_land";
-
-		// $.post("php/worked_2_4.php", {request: "blackPage", state: "logged", system: "giroscop"}, function (data) {
-		// 	$("#page_content").html(data);
-		// });
+		document.location.href += "black_land";
 	} // if
 } // onOrientationChange
 
 
 function refresh(system) {
 	showMessage("refresh load system: " + system);
-
-	// document.location.href += "black_land";
-
-	// $.post("php/worked_2_4.php", {request: "blackPage", state: "logged", system: system}, function (data) {
-	// 	$("#page_content").html(data);
-	// });
+	document.location.href += "black_land";
 } // refresh
 
 
 function error(system) {
 	showMessage("error system: " + system);
-
-	// $.post("php/worked_2_4.php", {request: "whitePage", state: "not logged", system: system}, function (data) {
-	// 	$("#page_content").html(data);
-	// });
 } // error
 
 
