@@ -60,5 +60,5 @@ function error(system) {
 
 function showMessage(text){
 	console.log(text);
-	alert(text);
+	// alert(text);
 } // showMessage
