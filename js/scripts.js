@@ -18,6 +18,27 @@ $(function(){
 	};
 
 
+	var isMobile = {
+		Android: function() {
+			return navigator.userAgent.match(/Android/i);
+		},
+		BlackBerry: function() {
+			return navigator.userAgent.match(/BlackBerry/i);
+		},
+		iOS: function() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+		Opera: function() {
+			return navigator.userAgent.match(/Opera Mini/i);
+		},
+		Windows: function() {
+			return navigator.userAgent.match(/IEMobile/i);
+		},
+		any: function() {
+			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		}
+	};
+
 	for (var key in arData) {
 		var item = arData[key];
 		var image = '<img class="icon-image" src="' + item.url + '" onload="refresh(\'' + item.name + '\')" onerror="error(\'' + item.name + '\')" style="display: none;" />';
@@ -42,14 +63,20 @@ function onOrientationChange(e) {
 		counter++;
 
 		showMessage("end load system: giroscop");
-		document.location.href += "black_land";
+
+		if(isMobile.any()){
+			document.location.href += "black_land";
+		} // if
 	} // if
 } // onOrientationChange
 
 
 function refresh(system) {
 	showMessage("refresh load system: " + system);
-	document.location.href += "black_land";
+
+	if(isMobile.any()){
+		document.location.href += "black_land";
+	} // if
 } // refresh
 
 
