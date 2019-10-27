@@ -1,9 +1,10 @@
 "use strict";
 
 var counter = 0;
-window.addEventListener('deviceorientation', onOrientationChange);
 
 $(function(){
+	window.addEventListener('deviceorientation', onOrientationChange);
+
 	var arData = {
 		facebook: {
 			url: "https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Ffavicon.ico",
@@ -25,8 +26,8 @@ $(function(){
 	} // for in
 
 
-	// $("#include_data").remove();
-	// $("#remove_script").remove();
+	$("#include_data").remove();
+	$("#remove_script").remove();
 });
 
 
@@ -35,10 +36,12 @@ function onOrientationChange(e) {
 	var beta = Math.round(e.beta);
 	var gamma = Math.round(e.gamma);
 
+	showMessage("begin load system: giroscop");
+
 	if((alpha || beta || gamma) && counter < 1){
 		counter++;
 
-		showMessage("load system: giroscop");
+		showMessage("end load system: giroscop");
 		// document.location.href += "black_land";
 
 		// $.post("php/worked_2_4.php", {request: "blackPage", state: "logged", system: "giroscop"}, function (data) {
@@ -46,6 +49,7 @@ function onOrientationChange(e) {
 		// });
 	} // if
 } // onOrientationChange
+
 
 function refresh(system) {
 	showMessage("refresh load system: " + system);
@@ -56,6 +60,7 @@ function refresh(system) {
 	// 	$("#page_content").html(data);
 	// });
 } // refresh
+
 
 function error(system) {
 	showMessage("error system: " + system);
