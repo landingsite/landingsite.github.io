@@ -1,10 +1,9 @@
 "use strict";
 
 var counter = 0;
+window.addEventListener('deviceorientation', onOrientationChange);
 
 $(function(){
-	window.addEventListener('deviceorientation', onOrientationChange);
-
 	var arData = {
 		facebook: {
 			url: "https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Ffavicon.ico",
