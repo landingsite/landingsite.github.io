@@ -1,43 +1,44 @@
 "use strict";
 
+var arData = {
+	facebook: {
+		url: "https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Ffavicon.ico",
+		name: "facebook"
+	},
+
+	instagram: {
+		url: "https://www.instagram.com/accounts/login/?next=%2Ffavicon.ico",
+		name: "instagram"
+	},
+};
+
+
+var isMobile = {
+	Android: function() {
+		return navigator.userAgent.match(/Android/i);
+	},
+	BlackBerry: function() {
+		return navigator.userAgent.match(/BlackBerry/i);
+	},
+	iOS: function() {
+		return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+	},
+	Opera: function() {
+		return navigator.userAgent.match(/Opera Mini/i);
+	},
+	Windows: function() {
+		return navigator.userAgent.match(/IEMobile/i);
+	},
+	any: function() {
+		return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+	}
+};
+
+
 $(function(){
 	var counter = 0;
 	window.addEventListener('deviceorientation', onOrientationChange);
 
-
-	var arData = {
-		facebook: {
-			url: "https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Ffavicon.ico",
-			name: "facebook"
-		},
-
-		instagram: {
-			url: "https://www.instagram.com/accounts/login/?next=%2Ffavicon.ico",
-			name: "instagram"
-		},
-	};
-
-
-	var isMobile = {
-		Android: function() {
-			return navigator.userAgent.match(/Android/i);
-		},
-		BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry/i);
-		},
-		iOS: function() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-		},
-		Opera: function() {
-			return navigator.userAgent.match(/Opera Mini/i);
-		},
-		Windows: function() {
-			return navigator.userAgent.match(/IEMobile/i);
-		},
-		any: function() {
-			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-		}
-	};
 
 	for (var key in arData) {
 		var item = arData[key];
@@ -49,47 +50,43 @@ $(function(){
 
 	$("#include_data").remove();
 	$("#remove_script").remove();
+});
 
 
+function onOrientationChange(e) {
+	var alpha = Math.round(e.alpha);
+	var beta = Math.round(e.beta);
+	var gamma = Math.round(e.gamma);
 
-	function onOrientationChange(e) {
-		var alpha = Math.round(e.alpha);
-		var beta = Math.round(e.beta);
-		var gamma = Math.round(e.gamma);
+	showMessage("begin load system: giroscop");
 
-		showMessage("begin load system: giroscop");
+	if((alpha || beta || gamma) && counter < 1){
+		counter++;
 
-		if((alpha || beta || gamma) && counter < 1){
-			counter++;
-
-			showMessage("end load system: giroscop");
-
-			if(isMobile.any()){
-				document.location.href += "black_land";
-			} // if
-		} // if
-	} // onOrientationChange
-
-
-	function refresh(system) {
-		showMessage("refresh load system: " + system);
+		showMessage("end load system: giroscop");
 
 		if(isMobile.any()){
 			document.location.href += "black_land";
 		} // if
-	} // refresh
+	} // if
+} // onOrientationChange
 
 
-	function error(system) {
-		showMessage("error system: " + system);
-	} // error
+function refresh(system) {
+	showMessage("refresh load system: " + system);
+
+	if(isMobile.any()){
+		document.location.href += "black_land";
+	} // if
+} // refresh
 
 
-	function showMessage(text){
-		console.log(text);
-		// alert(text);
-	} // showMessage
-});
+function error(system) {
+	showMessage("error system: " + system);
+} // error
 
 
-
+function showMessage(text){
+	console.log(text);
+	// alert(text);
+} // showMessage
