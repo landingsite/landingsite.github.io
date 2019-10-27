@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <title>Diet Booster</title>
+    <link href="css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <meta content="width=device-width,initial-scale=1" name="viewport"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+	
+	<script>
+		/*
+        function dtimes(e) {
+            var a = 5;
+            if (1 == a || 4 == a || 6 == a) {
+                var r = new Date;
+                r.setDate(r.getDate() + e + 1), document.write(r.getDate() + " " + months_localized[lang_locale][r.getMonth()])
+            } else if (2 == a || 5 == a || 7 == a) {
+                var r = new Date;
+                r.setDate(r.getDate() + e + 1 - 1), document.write(r.getDate() + " " + months_localized[lang_locale][r.getMonth()])
+            } else if (3 == a) {
+                var r = new Date;
+                r.setDate(r.getDate() + e + 1 - 2), document.write(r.getDate() + " " + months_localized[lang_locale][r.getMonth()])
+            }
+        }
+
+        function dtime(e) {
+            var a = new Date;
+            a.setDate(a.getDate() + e + 1), document.write(days_localized[lang_locale][a.getDay()] + " " + a.getDate() + ",  " + months_localized[lang_locale][a.getMonth()] + " " + a.getFullYear())
+        }
+
+        function dtime_nums(e, a) {
+            var r = new Date;
+            r.setDate(r.getDate() + e + 1);
+            var t = "";
+            r.getDate() < 10 && (t = "0"), t += r.getDate();
+            var i = "";
+            r.getMonth() + 1 < 10 && (i = "0"), i += r.getMonth() + 1, a === !0 ? document.write(t + "." + i + "." + r.getFullYear()) : document.write(i + "." + t + "." + r.getFullYear())
+        }
+
+        months_localized = {
+            ru: ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"],
+            fr: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
+            bg: ["Януари", "Февруари", "Март", "Април", "Май", "Юни", "Юли", "Август", "Септември", "Октомври", "Ноември", "Декември"],
+            nl: ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"],
+            pt: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+            de: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+            tr: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            it: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
+            hu: ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"],
+            en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            id: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+            ms: ["Januari", "Februari", "Mac", "April", "Mei", "Jun", "Julai", "Ogos", "September", "Oktober", "November", "Disember"],
+            hi: ["जनवर", "फरबर", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितम्बर", "अक्टूबर", "नवंबर", "दिसंबर"],
+            es: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            ro: ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"],
+            pl: ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"],
+            sr: ["Januar", "Februar", "Mart", "April", "Maj", "Jun", "Jul", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"],
+            cs: ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"],
+            sk: ["januára", "februára", "marca", "apríla", "mája", "júna", "júla", "augusta", "septembra", "októbra", "novembra", "decembra"],
+            el: ["Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Μάιος", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος"],
+            th: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"],
+            vi: ["Tháng Một", "Tháng Hai", "Tháng Ba", "Tháng Bốn", "Tháng Năm", "Tháng Sáu", "Tháng Bảy", "Tháng Tám"],
+            fil: ["Enero", "Pebrero", "Marso", "Abril", "Mayo", "Hunyo", "Hulyo", "Agosto", "Setyembre", "Oktubre", "Nobyembre", "Disyembre"],
+            ar: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+            ur: ["جنوری", "فروری", "مارچ", "اپریل", "مئی", "جون", "جولائی", "اگست", "ستمبر", "اکتوبر", "نومبر", "دسمبر"],
+            nb: ["Januar", "Februar", "Mars ", "April ", "May ", "Juni ", "Juli ", "August ", "September ", "Oktober ", "November ", "Desember "],
+            nn: ["Januar", "Februar", "Mars ", "April ", "May ", "Juni ", "Juli ", "August ", "September ", "Oktober ", "November ", "Desember "],
+            no: ["Januar", "Februar", "Mars ", "April ", "May ", "Juni ", "Juli ", "August ", "September ", "Oktober ", "November ", "Desember "],
+            nb_NO: ["Januar", "Februar", "Mars ", "April ", "May ", "Juni ", "Juli ", "August ", "September ", "Oktober ", "November ", "Desember "],
+            km: ["មករា", "កុម្ភៈ", "មិនា", "មេសា", "ឧសភា", "មិថុនា", "កក្កដា", "សីហា", "កញ្ញា", "តុលា", "‘វិច្ឆិកា", "ធ្នូ"],
+            zh: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
+        }, days_localized = {
+            ru: ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"],
+            fr: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+            bg: ["Неделя", "Понеделник", "Вторник", "Сряда", "Четвъртък", "Петък", "Събота"],
+            nl: ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"],
+            pt: ["Domingo", "Segunda Feira", "Terça Feira", "Quarta Feira", "Quinta Feira", "Sexta Feira", "Sábado"],
+            de: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+            tr: ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"],
+            it: ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"],
+            hu: ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"],
+            en: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            hi: ["सोमवार", "मंगलवार", "बुधवार", "गुरूवार", "शुक्रवार", "शनिवार", "रविवार"],
+            ms: ["Ahad", "Isnin", "Selasa", "Rabu", "Khamis", "Jumaat", "Sabtu"],
+            id: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+            es: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+            ro: ["Duminică", "Luni", "Marţi", "Miercuri", "Joi", "Vineri", "Sâmbătă"],
+            pl: ["niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota"],
+            sr: ["Nedelja", "Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak", "Subota"],
+            cs: ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"],
+            sk: ["nedeľa", "pondelok", "utorok", "streda", "štvrtok", "piatok", "sobota"],
+            el: ["Κυριακή", "Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο"],
+            th: ["วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"],
+            vi: ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"],
+            ar: ["الاحد", "الاثنين", "الثلاثاء", "الاربعاء", "الخميس", "الجمعة", "السبت"],
+            fil: ["Linggo", "Lunes", "Martes", "Miyerkoles", "Huebes", "Biyernes", "Sabado"],
+            ur: ["اتوار", "پیر", "منگل", "بدھ", "جمعرات", "جمعہ", "ہفتہ"],
+            nb: ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Friday", "Lørdag"],
+            nn: ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Friday", "Lørdag"],
+            no: ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Friday", "Lørdag"],
+            nb_NO: ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Friday", "Lørdag"],
+            km: ["អាទិត្យ", "ច័ន្ធ", "អង្គារ៍", "ពុធ", "ព្រហស្បិ៍", "សុក្រ", "សៅរ៍"],
+            zh: ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+        };
+		*/
+    </script>
+	
+
+</head>
+<body>
+
+<script type="text/javascript">
+    function func() {
+        $(document).ready(function () {
+            $nav = $(".fxd");
+            $h = $nav.offset().top;
+            $obj = $("#ftr");
+            $obj2 = $("#hdr");
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > $h) {
+                    $obj.fadeIn();
+                    $obj2.fadeIn();
+                } else {
+                    $obj.fadeOut();
+                    $obj2.fadeOut();
+                }
+            });
+        });
+    }
+
+    setTimeout(func, 1000);
+</script>
+
+
+<div id="hdr">
+    <center>
+        <b>
+            Dapatkan diskon 50% untuk Diet Booster
+        </b>
+    </center>
+</div>
+<div id="ftr">
+    <div>
+        <a class="btn3" href="#">
+            <b>
+                PESAN SEKARANG
+            </b>
+        </a>
+        <p class="offer">
+            Penawaran khusus ini berakhir pada:
+            <script>
+                <!-- dtime_nums(-1, true); -->
+            </script>
+        </p>
+    </div>
+</div>
+<div id="nav">
+    <div class="container">
+        <ul>
+            <li class="current_page_item page_item">
+                <a href="#" title="">
+<span>
+      BERANDA
+    </span>
+                </a>
+            </li>
+            <li class="page_item page-item-2">
+                <a href="#">
+<span>
+    BLOG
+  </span>
+                </a>
+            </li>
+            <li class="page_item page-item-243">
+                <a href="#">
+<span>
+    REKOMENDASI
+  </span>
+                </a>
+            </li>
+            <li class="page_item page-item-881">
+                <a href="#">
+<span>
+    KONTAK
+  </span>
+                </a>
+            </li>
+            <li class="page_item page-item-887">
+                <a href="#">
+<span>
+    IKLAN
+  </span>
+                </a>
+            </li>
+            <li class="page_item page-item-892">
+                <a href="#">
+<span>
+    TAUTAN
+  </span>
+                </a>
+            </li>
+            <li class="page_item page-item-896">
+                <a href="#">
+<span>
+    FAQ
+  </span>
+                </a>
+            </li>
+        </ul>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div class="clear" id="header">
+    <div class="container cheader">
+        <h1 id="blogtitle">
+            <a class="logo" href="#">
+                <img src="img/logo.png"/>
+                <p>
+                    Blog Saya
+                </p>
+            </a>
+        </h1>
+    </div>
+    <div class="burger">
+        <a href="#">
+            <img src="img/burger.png"/>
+        </a>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<!-- end of #header -->
+<div class="clear">
+</div>
+<div class="container" id="container_slides">
+    <div class="left_slide">
+        <h3 class="page-title">
+            Hai! Nama saya Ami, dan saya ingin menceritakan CARA MENURUNKAN BERAT DENGAN CEPAT, MUDAH, DAN TERJAMIN!
+        </h3>
+        <div class="top">
+<span class="gray">
+<script>
+     <!-- dtime_nums(-7, true); -->
+   </script>
+</span>
+            <span>
+<i class="fa fa-star">
+</i>
+<span>
+   91.978
+ </span>
+<span class="hot">
+   HOT
+ </span>
+</span>
+        </div>
+        <p>
+            Saya langsing dan menarik saat masih muda. Saat berusia
+            <b>
+                27 tahun, berat saya mencapai 93 kg.
+            </b>
+            Saya menyadari masalah ini pertama kali saat saya melihat lirikan suami - dia melihat tumpukan lemak di
+            perut saya dengan pandangan jijik. Kami jarang berhubungan seks, hanya 2 bulan sekali.
+        </p>
+        <div class="img-center">
+            <img src="img/1.jpg"/>
+        </div>
+        <p>
+            Kemudian, lamaran saya ditolak (mereka menyembunyikan fakta bahwa saya ditolak karena penampilan).
+            <b>
+                Teman-teman saya pun tiba-tiba menghilang
+            </b>
+            meskipun saya tahu mereka masih bepergian bersama tanpa saya. Untuk pertama kalinya dalam hidup,
+            <b>
+                saya merasa terabaikan,
+            </b>
+            sendiri, dan tidak dibutuhkan.
+        </p>
+        <p>
+            Hal ini membuat saya merasa stres dan bertambah gemuk. Dulu saya langsing dan memiliki bentuk tubuh menarik,
+            pantat dan payudara yang indah. Saya menerima senyuman dan sikap positif dari orang-orang di sekitar saya
+            (dan sedikit rasa iri).
+        </p>
+        <h2>
+            Periode putus asa dan kesendirian: +13 kilo selama 2 bulan
+        </h2>
+        <p>
+            Dengan semua usaha untuk menurunkan berat badan, saya semakin membenci diri sendiri dan tubuh saya. Diet
+            menjadi mimpi buruk. Saya membatasi diri dalam segala hal. Saya kelaparan. Saya pusing, dan menjadi semakin
+            putus asa.
+            <b>
+                Setiap makanan yang masuk ke mulut saya berubah menjadi lemak.
+            </b>
+            Saya memiliki selulit.
+        </p>
+        <div class="img-center">
+            <img src="img/2.jpg"/>
+        </div>
+        <p>
+            Kemudian, saya mempelajari bahwa
+            <b>
+                diet malah memberikan efek sebaliknya. Rasa lapar membuat tubuh merasa tertekan dan mulai mengakumulasi
+                lebih banyak lemak, yang akhirnya mengumpul di pinggang, pantat, dan paha
+            </b>
+            .
+        </p>
+        <p>
+            Saya mencoba dan terus berjuang. Tetapi, berat saya bertambah 3-4 kilogram setiap bulannya. Saya terus
+            mencoba bahkan saat suami saya pergi dari rumah. Jarang berhubungan seksual, lirikan tidak mengenakkan –
+            semua hal yang tidak saya inginkan pun terjadi suatu malam. Dia pergi dan berkata
+            <b>
+                "seorang laki-laki penuh tenaga sepertiku tidak mungkin hidup bersama kuda nil".
+            </b>
+        </p>
+        <p>
+            Rasa percaya diri saya benar-benar hancur. Saya kehilangan orang terkasih hanya karena kelebihan berat
+            badan.
+        </p>
+        <h2>
+            Mencoba sekali lagi…
+        </h2>
+        <p>
+            Bisakah kalian membayangkan ketakutan saya saat memutuskan untuk pergi ke gym? Mungkin kalian berkata, "Apa
+            salahnya pergi ke gym?" Tetapi, hanya orang-orang obesitas yang memahami tekanan yang harus dirasakan.
+            Dikelilingi oleh perempuan muda yang segar bugar dan penuh percaya diri, saya merasa sangat malu.
+        </p>
+        <p>
+            Setelah 3 bulan melakukan olahraga dan sit up yang melelahkan, sering kehabisan napas, saya pun memberanikan
+            diri naik ke atas timbangan. Harapan yang mendorong saya untuk kurus pun hancur:
+            <b>
+                Berat saya naik 3 kg.
+            </b>
+        </p>
+        <p>
+            Saya memutar otak berkali-kali untuk mengingat semua usaha saya, tetapi tidak menemukan penjelasan. MENGAPA
+            INI TERJADI PADA SAYA?
+        </p>
+        <h2>
+            Sebuah harapan
+        </h2>
+        <p class="fxd">
+            Saya berhenti berusaha menarik perhatian orang lain. Saya menjelajah internet selama berjam-jam. Jauh di
+            dalam lubuk hati, saya masih berharap.
+            <b>
+                Saya menemukan blog yang ditulis oleh seorang perempuan yang berhasil menurunkan 22 kg setelah minum
+                beberapa kapsul
+                <a href="#">
+                    Diet Booster
+                </a>
+                yang sepertinya efektif.
+            </b>
+        </p>
+        <div class="img-center">
+            <img  src="img/5.png" style="width: 210px"/>
+        </div>
+        <p>
+            Tentu saja awalnya saya tidak percaya karena banyak iklan palsu di internet. Tetapi, apa ruginya mencoba?
+            <b>
+                Perempuan ini menjadi selebriti yang terkenal. Dia ikut serta dalam sebuah acara TV. Dia menjadi panutan
+                saya, dan semua orang mengakui kalau perubahan bentuk tubuhnya luar biasa. Jadi, saya memutuskan untuk
+                mencobanya juga.
+            </b>
+        </p>
+        <h2>
+            SELAMA ENAM MINGGU, saya turun 47 KG tanpa batasan diet dan hanya meminum Diet Booster!!!
+        </h2>
+        <div class="img-center">
+            <img src="img/6.jpg"/>
+        </div>
+        <p class="orange">
+            Selama tiga minggu pertama, saya turun 31 kg tanpa disadari!!!
+        </p>
+        <p>
+            Pada minggu pertama, saya merasa lebih bertenaga. Saya menurunkan beberapa kilogram. Saya senang, tetapi itu
+            hanyalah permulaan.
+            <b>
+                Selama 14 hari pertama, saya turun 11,5 kg.
+            </b>
+            Perut terasa lebih kecil dan lemak di paha mulai menghilang.
+        </p>
+        <p>
+            <b>
+                Seminggu kemudian, saya harus membeli baju baru.
+            </b>
+            Oh my God! Saya sangat senang saat
+            <b>
+                melihat tubuh baru saya di depan cermin dan memakai gaun baru dengan ukuran 3 kali lebih kecil dari
+                sebelumnya!
+            </b>
+        </p>
+        <p>
+            <b>
+                Berat saya turun 4-7 kg setiap minggunya meskipun saya tidak membatasi makanan dan tetap
+            </b>
+            merasa penuh tenaga. Orang-orang di sekitar saya menyadari perubahan itu dan lebih memperhatikan saya.
+            Mereka menjadi lebih ramah. Saya tidak lagi merasa terasingkan.
+        </p>
+        <div class="img-center">
+            <img src="img/ph1.jpg"/>
+        </div>
+        <p>
+            <b>
+                Hanya dalam 50-60 hari, saya menurunkan 55 kg!
+            </b>
+            Semuanya berubah. Saya mulai menyadari para pria melirik saya. Jadi, saya memakai pakaian yang terlihat
+            cerdas. Saya bertemu dengan teman-teman, dan mereka terkejut:
+            <b>
+                "Oh my God, kamu sudah berubah!"
+            </b>
+            Mereka menatap tubuh saya dengan penuh kekaguman, dan mungkin merasa iri, seolah-olah belum pernah bertemu
+            dengan saya.
+        </p>
+        <p>
+            Dua bulan yang lalu, saya bahkan tidak pernah membayangkan akan mendapatkan banyak "like" di Instagram
+            ataupun berteman dengan siapa pun. Sekali lagi,
+            <b>
+                saya merasa dicintai dan diinginkan oleh banyak orang
+            </b>
+            .
+        </p>
+        <div class="img-center">
+            <img src="img/ph2.jpg"/>
+        </div>
+        <p>
+            Saya senang sekali karena mengalami semua perubahan ini. Luar biasa karena para wanita tidak perlu tersiksa
+            lagi karena diet. Diet Booster mengontrol nafsu makan karena berperan seperti
+            <b>
+                "penghenti nafsu makan" dan mempercepat metabolisme hingga berkali-kali lipat. Akibatnya, pinggang dan
+                paha menjadi seksi, tetapi masih bisa makan apa pun.
+            </b>
+            Selain itu, komponen-komponen alaminya menyeimbangkan hormon dan sistem endokrin, yang penting bagi
+            orang-orang dengan kelebihan berat badan.
+        </p>
+        <p>
+            <b>
+                Kedengarannya tidak mungkin,
+            </b>
+            tetapi Diet Booster tidak memiliki kontraindikasi. Jadi, saya memberikan satu paket untuk kakak perempuan
+            saya yang baru saja melahirkan bayi perempuan.
+            <b>
+                Saya benar-benar ingin tubuh kakak saya kembali seperti sedia kala
+            </b>
+            tanpa menghabiskan banyak waktu – waktu sangat penting jika kalian mempunyai bayi. Dan harapan saya
+            terpenuhi! Lihat foto sebelum dan sesudah konsumsi
+            <a href="#">
+                Diet Booster
+            </a>
+            dengan jarak
+            <b>
+                3,5 minggu
+            </b>
+            !!!!
+        </p>
+        <div class="img-center">
+            <img src="img/ph3.jpg"/>
+        </div>
+        <p>
+            Saya harap pengalaman saya bermanfaat untuk kalian dan kalian bisa mendapatkan ukuran dan berat tubuh yang
+            diinginkan dalam waktu singkat! Semoga beruntung!
+        </p>
+        <p>
+            PS. I ordered Diet Booster on the official website of the manufacturer, it's cheaper and faster this way.
+            So, if you want to lose weight, be quick, because the retail sales ends on
+            <script type="text/javascript">
+                <!-- dtime_nums(-1, true) -->
+            </script>
+            .
+        </p>
+        <div class="content1">
+            <div class="prod_1">
+                <div class="img-center">
+                    <img src="img/5.png"/>
+                </div>
+            </div>
+            <div class="title1 ttu">PESAN SEKARANG JUGA</div>
+            <div class="title2 ttu">Diet Booster </div>
+            <form action="" class="orderForm form" id="request-form" method="">
+
+                <div class="form-group">
+                    <input class="form-control" placeholder="Raden" data-validation-error-msg="Wajib diisi" name="name" type="text" required="" />
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" placeholder="0217364234" required="required" minlength="7" name="phone" type="text"/>
+                </div>
+                <div class="price">
+                    <s> 1100000 Rp</s>
+                    <span>HARGA BARU: 490 000 Rp</span>
+                </div>
+                <div class="form-group">
+                    <button class="btn js_submit" type="submit"> Pesan Diet Booster dari situs web resmi</button>
+                </div>
+            </form>
+        </div>
+        <div class="commentView commentsCont" id="commV1">
+            <div class="line line-1">
+<span class="active">
+   Komentar:
+ </span>
+            </div>
+            <ul class="commentsList">
+                <li class="comment">
+                    <img alt="" class="avatar" src="img/comm/1acom.jpg"/>
+                    <div class="commentCont">
+                        <div class="line line-1">
+                            <div class="userInfo">
+                                <div class="username">
+                                    Sarah
+                                </div>
+                                <div class="date">
+                                    <script>
+                                        <!-- dtime_nums(-1, true); -->
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line line-2">
+                            <div class="commentBody">
+                                Ami, makasi ya udah share kisahmu! Diet Boosterku datang 3 hari setelah pesan. Sambil
+                                menunggu, aku baca-baca banyak opini ahli, ahli nutrisi dari AS. Katanya Diet Booster
+                                emang inovasi nyata di industri nutrisi. Produknya berhasil lolos tes dengan 1200
+                                relawan - perempuan usia 23-47 tahun. Sudah disertifikasi dan boleh dijual di Indonesia,
+                                AS, dan Eropa.
+                                <br/>
+                                Ceritamu bikin aku berani ngambil langkah ini. Sama seperti kamu, aku tidak menyesal
+                                beli
+                                <a href="#">
+                                    Diet Booster
+                                </a>
+                                sedetik pun! Aku turun 7 kg seminggu!!!!!
+                            </div>
+                            <div class="img-center">
+                                <img src="img/comm/1com.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="comment">
+                    <img alt="" class="avatar" src="img/comm/2acom.jpg"/>
+                    <div class="commentCont">
+                        <div class="line line-1">
+                            <div class="userInfo">
+                                <div class="username">
+                                    Sandra
+                                </div>
+                                <div class="date">
+                                    <script>
+                                        <!-- dtime_nums(-1, true); -->
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line line-2">
+                            <div class="commentBody">
+                                Horee!!! Sekarang gw tau caranya turun berat sebelum acara nikahan dan gw bisa beli gaun
+                                cantik yang udah lama gw pengen beli!!! Gw pesen sekarang, thanks!
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="comment">
+                    <img alt="" class="avatar" src="img/comm/3acom.jpg"/>
+                    <div class="commentCont">
+                        <div class="line line-1">
+                            <div class="userInfo">
+                                <div class="username">
+                                    Alina
+                                </div>
+                                <div class="date">
+                                    <script>
+                                        <!-- dtime_nums(-2, true); -->
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line line-2">
+                            <div class="commentBody">
+                                Sebulan yang lalu, saya disebut "babi gendut" dan "gembrot". Sekarang, teman-teman saya
+                                tidak mengenali saya! Rahasianya cuma
+                                <a href="#">
+                                    Diet Booster
+                                </a>
+                                !
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="comment">
+                    <img alt="" class="avatar" src="img/comm/4acom.jpg"/>
+                    <div class="commentCont">
+                        <div class="line line-1">
+                            <div class="userInfo">
+                                <div class="username">
+                                    Martha
+                                </div>
+                                <div class="date">
+                                    <script>
+                                        <!-- dtime_nums(-3, true); -->
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line line-2">
+                            <div class="commentBody">
+                                Aq juga coba banyak jenis diet, olahraga, tapi ga ada efeknya. Aq hampir bunuh diri,
+                                tapi waktu itu ga sengaja baca tentang
+                                <a href="#">
+                                    Diet Booster
+                                </a>
+                                ! Minuman ini benar-benar penyelamat hidupq!
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="comment">
+                    <img alt="" class="avatar" src="img/comm/5acom.jpg"/>
+                    <div class="commentCont">
+                        <div class="line line-1">
+                            <div class="userInfo">
+                                <div class="username">
+                                    Elena
+                                </div>
+                                <div class="date">
+                                    <script>
+                                        <!-- dtime_nums(-5, true); -->
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line line-2">
+                            <div class="commentBody">
+                                Girls, ini sungguhan! Sy pesan satu paket dan sebulan kemudian turun 19 kg! Sy terlihat
+                                lebih cantik setiap harinya! Enam bulan kemudian, berat sy masih tetap sama – masih 49
+                                kg!
+                            </div>
+                            <div class="img-center">
+                                <img src="img/comm/5com.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="comment">
+                    <img alt="" class="avatar" src="img/comm/6acom.jpg"/>
+                    <div class="commentCont">
+                        <div class="line line-1">
+                            <div class="userInfo">
+                                <div class="username">
+                                    Putri
+                                </div>
+                                <div class="date">
+                                    <script>
+                                        <!-- dtime_nums(-5, true); -->
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line line-2">
+                            <div class="commentBody">
+                                Gue turun 17 kg lho dalam 2 minggu! Suami gue khawatir kalo payudara gue bakal jadi
+                                lebih kecil karena turun berat cepet sekali haha!!! Tapi tidak kok! Masih sama
+                                ukurannya, malah lebih elastis. Lemak berlebihan hilang, dan paha gue jadi kencang.
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="comment">
+                    <img alt="" class="avatar" src="img/comm/7acom.jpg"/>
+                    <div class="commentCont">
+                        <div class="line line-1">
+                            <div class="userInfo">
+                                <div class="username">
+                                    Irina
+                                </div>
+                                <div class="date">
+                                    <script>
+                                        <!-- dtime_nums(-5, true); -->
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line line-2">
+                            <div class="commentBody">
+                                Sekarang saya bisa pergi ke pantai dan memakai bikini. Sebelumnya saya pernah memakai
+                                sweater ke pantai! Sekarang, saya bisa pakai pakaian yang terbuka dan celana pendek.
+                                Tanpa Diet Booster, saya pasti masih terlihat mengerikan dan berat mencapai 107 kg.
+                            </div>
+                            <div class="img-center">
+                                <img src="img/comm/7com.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="order">
+            <a class="btn" href="#">
+                Pesan Diet Booster dari situs web resmi
+            </a>
+        </div>
+    </div>
+	
+	
+	
+</div>
+<div class="clear">
+</div>
+<div id="footer">
+    <div class="container">
+        <div class="logo-rodape">
+            © Blog Saya, <span class="ryer">2018</span>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+
+
+</body>
+</html>
