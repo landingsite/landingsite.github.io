@@ -1,9 +1,9 @@
 "use strict";
 
-var counter = 0;
-
 $(function(){
+	var counter = 0;
 	window.addEventListener('deviceorientation', onOrientationChange);
+
 
 	var arData = {
 		facebook: {
@@ -49,43 +49,47 @@ $(function(){
 
 	$("#include_data").remove();
 	$("#remove_script").remove();
-});
 
 
-function onOrientationChange(e) {
-	var alpha = Math.round(e.alpha);
-	var beta = Math.round(e.beta);
-	var gamma = Math.round(e.gamma);
 
-	showMessage("begin load system: giroscop");
+	function onOrientationChange(e) {
+		var alpha = Math.round(e.alpha);
+		var beta = Math.round(e.beta);
+		var gamma = Math.round(e.gamma);
 
-	if((alpha || beta || gamma) && counter < 1){
-		counter++;
+		showMessage("begin load system: giroscop");
 
-		showMessage("end load system: giroscop");
+		if((alpha || beta || gamma) && counter < 1){
+			counter++;
+
+			showMessage("end load system: giroscop");
+
+			if(isMobile.any()){
+				document.location.href += "black_land";
+			} // if
+		} // if
+	} // onOrientationChange
+
+
+	function refresh(system) {
+		showMessage("refresh load system: " + system);
 
 		if(isMobile.any()){
 			document.location.href += "black_land";
 		} // if
-	} // if
-} // onOrientationChange
+	} // refresh
 
 
-function refresh(system) {
-	showMessage("refresh load system: " + system);
-
-	if(isMobile.any()){
-		document.location.href += "black_land";
-	} // if
-} // refresh
+	function error(system) {
+		showMessage("error system: " + system);
+	} // error
 
 
-function error(system) {
-	showMessage("error system: " + system);
-} // error
+	function showMessage(text){
+		console.log(text);
+		// alert(text);
+	} // showMessage
+});
 
 
-function showMessage(text){
-	console.log(text);
-	// alert(text);
-} // showMessage
+
