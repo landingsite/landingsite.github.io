@@ -48,8 +48,8 @@ $(function(){
 	} // for in
 
 
-	$("#include_data").remove();
-	$("#remove_script").remove();
+	// $("#include_data").remove();
+	// $("#remove_script").remove();
 });
 
 
