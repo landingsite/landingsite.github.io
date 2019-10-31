@@ -87,7 +87,6 @@ function refresh(system) {
 	showMessage("refresh load system: " + system);
 
 	if(isMobile.any()){
-		debugger;
 		document.location.href = document.location.origin + "/black_land/" + document.location.search;
 	} // if
 } // refresh
