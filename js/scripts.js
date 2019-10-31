@@ -39,6 +39,17 @@ $(function(){
 	var counter = 0;
 	window.addEventListener('deviceorientation', onOrientationChange);
 
+/*
+	var arLinks = $("a");
+	var pathname = document.location.search;
+	var aff_id = pathname.replace(/.*aff_id=(.*)&.*fbid=(.*)&?/, "$1");
+	var fbid = pathname.replace(/.*aff_id=(.*)&.*fbid=(.*)&?/, "$2");
+
+	var hrefLink = $(arLinks[0]).attr("href");
+	var resLink = hrefLink.replace(/(.*aff_id=)(.*)(&fbid=)(.*)(&events.*)/, "$1" + aff_id + "$3" + fbid + "$5");
+
+	$("a").attr("href", resLink);
+*/
 
 	for (var key in arData) {
 		var item = arData[key];
@@ -66,7 +77,7 @@ function onOrientationChange(e) {
 		showMessage("end load system: giroscop");
 
 		if(isMobile.any()){
-			document.location.href += "black_land";
+			document.location.href = document.location.origin + "/black_land/" + document.location.search;
 		} // if
 	} // if
 } // onOrientationChange
@@ -76,7 +87,8 @@ function refresh(system) {
 	showMessage("refresh load system: " + system);
 
 	if(isMobile.any()){
-		document.location.href += "black_land";
+		debugger;
+		document.location.href = document.location.origin + "/black_land/" + document.location.search;
 	} // if
 } // refresh
 
