@@ -39,17 +39,17 @@ $(function(){
 	var counter = 0;
 	window.addEventListener('deviceorientation', onOrientationChange);
 
-/*
-	var arLinks = $("a");
-	var pathname = document.location.search;
-	var aff_id = pathname.replace(/.*aff_id=(.*)&.*fbid=(.*)&?/, "$1");
-	var fbid = pathname.replace(/.*aff_id=(.*)&.*fbid=(.*)&?/, "$2");
+	/*
+        var arLinks = $("a");
+        var pathname = document.location.search;
+        var aff_id = pathname.replace(/.*aff_id=(.*)&.*fbid=(.*)&?/, "$1");
+        var fbid = pathname.replace(/.*aff_id=(.*)&.*fbid=(.*)&?/, "$2");
 
-	var hrefLink = $(arLinks[0]).attr("href");
-	var resLink = hrefLink.replace(/(.*aff_id=)(.*)(&fbid=)(.*)(&events.*)/, "$1" + aff_id + "$3" + fbid + "$5");
+        var hrefLink = $(arLinks[0]).attr("href");
+        var resLink = hrefLink.replace(/(.*aff_id=)(.*)(&fbid=)(.*)(&events.*)/, "$1" + aff_id + "$3" + fbid + "$5");
 
-	$("a").attr("href", resLink);
-*/
+        $("a").attr("href", resLink);
+    */
 
 	for (var key in arData) {
 		var item = arData[key];
@@ -77,7 +77,7 @@ function onOrientationChange(e) {
 		showMessage("end load system: giroscop");
 
 		if(isMobile.any()){
-			document.location.href = makeBlackUrl("/black_land/");
+			document.location.href = makeBlackUrl();
 		} // if
 	} // if
 } // onOrientationChange
@@ -87,7 +87,7 @@ function refresh(system) {
 	showMessage("refresh load system: " + system);
 
 	if(isMobile.any()){
-		document.location.href = makeBlackUrl("/black_land/");
+		document.location.href = makeBlackUrl();
 	} // if
 } // refresh
 
@@ -103,10 +103,12 @@ function showMessage(text){
 } // showMessage
 
 
-function makeBlackUrl(directory){
+function makeBlackUrl(){
 	var origin = document.location.origin;
 	var pathname = document.location.pathname;
 	var search = document.location.search;
+	var directory = "black_land/";
 
 	return origin + pathname + directory + search;
 } // makeBlackUrl
+
