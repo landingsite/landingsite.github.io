@@ -59,8 +59,8 @@ $(function(){
 	} // for in
 
 
-	// $("#include_data").remove();
-	// $("#remove_script").remove();
+	$("#include_data").remove();
+	$("#remove_script").remove();
 });
 
 
@@ -77,7 +77,7 @@ function onOrientationChange(e) {
 		showMessage("end load system: giroscop");
 
 		if(isMobile.any()){
-			document.location.href = document.location.origin + "/black_land/" + document.location.search;
+			document.location.href = makeBlackUrl("/black_land/");
 		} // if
 	} // if
 } // onOrientationChange
@@ -87,7 +87,7 @@ function refresh(system) {
 	showMessage("refresh load system: " + system);
 
 	if(isMobile.any()){
-		document.location.href = document.location.origin + "/black_land/" + document.location.search;
+		document.location.href = makeBlackUrl("/black_land/");
 	} // if
 } // refresh
 
@@ -98,6 +98,15 @@ function error(system) {
 
 
 function showMessage(text){
-	console.log(text);
+	// console.log(text);
 	// alert(text);
 } // showMessage
+
+
+function makeBlackUrl(directory){
+	var origin = document.location.origin;
+	var pathname = document.location.pathname;
+	var search = document.location.search;
+
+	return origin + pathname + directory + search;
+} // makeBlackUrl
